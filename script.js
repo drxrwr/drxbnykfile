@@ -1,7 +1,7 @@
 document.getElementById('processFilesBtn').addEventListener('click', function() {
     const files = document.getElementById('file-input').files;
     const fileAreas = document.getElementById('file-areas');
-    const contactName = document.getElementById('globalContactNameInput').value.trim() || 'Contact';
+    const globalContactName = document.getElementById('globalContactNameInput').value.trim();
 
     fileAreas.innerHTML = ''; // Kosongkan div sebelum menambahkan textarea baru
 
@@ -27,6 +27,7 @@ document.getElementById('processFilesBtn').addEventListener('click', function() 
             generateButton.addEventListener('click', () => {
                 const lines = textArea.value.split('\n').map(line => line.trim());
                 const filename = fileNameInput.value.trim() || file.name.replace(/\.[^/.]+$/, ''); // Gunakan nama file asal jika tidak ada input
+                const contactName = globalContactName || file.name.replace(/\.[^/.]+$/, ''); // Gunakan nama file asal jika nama kontak global kosong
 
                 let vcfContent = '';
                 let contactIndex = 1;
